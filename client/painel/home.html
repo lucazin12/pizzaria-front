@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item active">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-home"></i>&nbsp; Seja bem-vindo(a)!</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                            <div class="">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+        
+
+    </section>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/home.js"></script>
+
+</body> 
+</html>

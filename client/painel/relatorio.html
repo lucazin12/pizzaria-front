@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <!-- <link rel="stylesheet" href="../css/dataTables.bootstrap.min.css"> -->
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item active">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-chart-line"></i>&nbsp; Relatório Financeiro</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                            <div class="menus-config">
+                                <a href="#" class="btn btn-white btn-sm active tab-content" id="tab-faturamento" onclick="relatorio.method.openTab('faturamento')">
+                                    <i class="fas fa-dollar-sign"></i> Faturamento
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-historico" onclick="relatorio.method.openTab('historico')">
+                                    <i class="fas fa-receipt"></i> Histórico de Pedidos
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 mb-5 tab-item" id="faturamento">
+                        
+                            <p class="title-categoria mb-0 mb-4">
+                                <b>Acompanhe suas vendas e faturamento por período.</b>
+                            </p>
+
+                            <div class="row">
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0"><b>Data início:</b></p>
+                                        <input id="txtDataInicioFaturamento" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0"><b>Data fim:</b></p>
+                                        <input id="txtDataFimFaturamento" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0"><b>Categoria:</b></p>
+                                        <select id="ddlCategoriaFaturamento" class="form-control">
+                                            <option value="0">Todas</option>
+                                            <option value="1">Delivery</option>
+                                            <option value="2">Retirada</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <a href="#!" class="btn btn-yellow btn-sm mt-4" onclick="relatorio.method.filtrarFaturamento()">
+                                        <i class="fas fa-search"></i>&nbsp; Filtrar Dados
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+
+                                <div class="col-3">
+
+                                    <div class="card card-address cursor-default mb-3">
+                                        <div class="img-icon-details">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </div>
+                                        <div class="infos">
+                                            <p class="text mb-0"><b>Total:</b></p>
+                                            <p class="value-card mb-0"><b id="lblTotalFaturamento">-</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card card-address cursor-default mb-3">
+                                        <div class="img-icon-details">
+                                            <i class="fas fa-utensils"></i>
+                                        </div>
+                                        <div class="infos">
+                                            <p class="text mb-0"><b>Nº Pedidos:</b></p>
+                                            <p class="value-card mb-0"><b id="lblTotalPedidos">-</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card card-address cursor-default mb-3">
+                                        <div class="img-icon-details">
+                                            <i class="fas fa-search-dollar"></i>
+                                        </div>
+                                        <div class="infos">
+                                            <p class="text mb-0"><b>Ticket Médio:</b></p>
+                                            <p class="value-card mb-0"><b id="lblTicketMedio">-</b></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-9">
+                                    <div class="card">
+                                        <canvas id="graficoFaturamento"></canvas>
+                                        <div id="tooltip">
+                                            <div class="tooltip-label"></div>
+                                            <div class="tooltip-value">
+                                                <span class="color-circle"></span>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
+                                        <p class="hidden" id="lblNenhumFaturamento">Nenhum faturamento encontrado no período selecionado.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 mb-5 tab-item hidden" id="historico">
+
+                            <p class="title-categoria mb-0 mb-4">
+                                <b>Filtre todos os pedidos realizados.</b>
+                            </p>
+
+                            <div class="row">
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0"><b>Data início:</b></p>
+                                        <input id="txtDataInicioHistorico" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0"><b>Data fim:</b></p>
+                                        <input id="txtDataFimHistorico" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <a href="#!" class="btn btn-yellow btn-sm mt-4" onclick="relatorio.method.filtrarHistorico()">
+                                        <i class="fas fa-search"></i>&nbsp; Filtrar Dados
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="card card-table mt-5">
+
+                                <div class="table-responsive">
+                                    <table id="data-table" class="table data-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th># Código</th>
+                                                <th>Cliente</th>
+                                                <th>Tipo</th>
+                                                <th>Pagamento</th>
+                                                <th>Criado em</th>
+                                                <th>Status</th>
+                                                <th>(R$) Total</th>
+                                                <th class="no-sort">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaFaturas">
+                                            <tr>
+                                                <td>#1</td>
+                                                <td>Weverton Lima</td>
+                                                <td>Delivery</td>
+                                                <td>Cartão de Crédito</td>
+                                                <td>18/10/2023</td>
+                                                <td><i class="far fa-check-circle"></i> Concluido</td>
+                                                <td style="color: #179e40;">R$ 59,90</td>
+                                                <td>
+                                                    <a class="btn btn-white btn-sm">
+                                                        <i class="fas fa-receipt"></i>&nbsp; Detalhes
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#2</td>
+                                                <td>João Gustavo</td>
+                                                <td>Retirada</td>
+                                                <td>Dinheiro</td>
+                                                <td>19/10/2023</td>
+                                                <td><i class="far fa-check-circle"></i> Concluido</td>
+                                                <td style="color: #179e40;">R$ 68,00</td>
+                                                <td>
+                                                    <a class="btn btn-white btn-sm">
+                                                        <i class="fas fa-receipt"></i>&nbsp; Detalhes
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th style="color: #179e40;">R$ 127,90</th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+        
+
+    </section>
+
+    <!-- Modal de Detalhes do Pedido (cópia do arquivo pedidos.html) -->
+    <div id="modalDetalhes" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Detalhes do pedido</h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                <div class="container-dados-pedido pt-1">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="card card-address cursor-default">
+                                <div class="img-icon-details status">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="infos pr-0">
+                                    <div class="d-flex">
+                                        <p class="name mb-0"><b id="lblNomeCliente"></b></p>
+                                        <span class="text mb-0" id="lblTelefoneCliente"></span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="info-pedido" id="lblDataHora"></span>
+                                        <span class="info-pedido link" id="lblTipoEntrega"></span>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card card-address cursor-default mt-2">
+                                <div class="img-icon-details status" id="lblFormaPagamentoIcon">
+                                </div>
+                                <div class="infos">
+                                    <p class="name mb-0"><b id="lblFormaPagamentoTitulo"></b></p>
+                                    <span class="text mb-0" id="lblFormaPagamentoDescricao"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 hidden" id="container-endereco">
+                            <div class="card card-address cursor-default mt-2">
+                                <div class="img-icon-details status">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="infos">
+                                    <p class="name mb-0"><b id="lblEndereco"></b></p>
+                                    <span class="text mb-0" id="lblCep"></span>
+                                </div>
+                                <div class="icon-edit">
+                                    <i class="fas fa-location-arrow"></i>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+                <div class="container-itens-pedido carrinho">
+
+                    <div id="itensPedido">
+
+                    </div>
+
+                    <div class="footer-btn mt-3" id="container-action-footer">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
+    <script type="text/javascript" src="../js/chart.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/pedidos.js"></script>
+    <script type="text/javascript" src="./js/relatorio.js"></script>
+
+</body> 
+</html>

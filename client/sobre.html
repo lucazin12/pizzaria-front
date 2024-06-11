@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delivery - Pizzaria Maluca</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/fontawesome.css">
+        <link rel="stylesheet" href="./css/animate.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+
+    </head>
+    <body>
+
+        <div class="loader-full animated fadeIn hidden">
+            <img src="./img/loader.png" width="100" class="animated pulse infinite" />
+        </div>
+
+        <div class="bg-top sobre"></div>
+
+        <header class="width-fix mt-3 animated fadeInUp">
+            <div class="card">
+
+                <div class="d-flex">
+                    <a href="./index.html" class="container-voltar">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="infos text-center">
+                        <h1 class="mb-0"><b>Sobre a loja</b></h1>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <header class="width-fix mt-5 mb-4 animated fadeIn delay-03s">
+            <div class="card">
+
+                <div class="d-flex">
+                    <div class="container-img-sobre animated fadeInUp delay-05s" id="imgLogoEmpresa"></div>
+                    <div class="infos">
+                        <h1 class="title-sobre"><b id="lblNomeEmpresa">Pizzaria Maluca</b></h1>
+                        <div class="infos-sub">
+                            <p class="sobre mb-2" id="lblSobreEmpresa"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="lista width-fix mt-5 pb-5 animated fadeInUp" >
+
+            <div class="container-group mb-5">
+                <p class="title-categoria mb-0"><i class="fas fa-map-marker-alt"></i>&nbsp; <b>Endereço</b></p>
+                <div class="card mt-2">
+                    <p class="mb-0 normal-text" id="lblEnderecoEmpresa"></p>
+                </div>
+            </div>
+
+            <div class="container-group mb-5 hidden" id="horarioFuncionamento">
+                <p class="title-categoria mb-0"><i class="fas fa-clock"></i>&nbsp; <b>Horário de funcionamento</b></p>
+            </div>
+
+            <div class="container-group mb-5" id="formasPagamento">
+                <p class="title-categoria mb-0"><i class="fas fa-coins"></i>&nbsp; <b>Formas de pagamento</b></p>
+                <span class="sub-title-categoria">Pagamento na entrega</span>
+                
+            </div>
+        </section>
+
+        <a href="./index.html" class="btn btn-yellow btn-full voltar animated fadeIn delay-05s hidden" id="menu-bottom">
+            Voltar para o cardápio
+        </a>
+
+        <section class="menu-bottom details animated fadeIn delay-05s disabled hidden" id="menu-bottom-closed">
+            <p class="mb-0"><b>Loja fechada no momento.</b></p>
+        </section>
+
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/sobre.js"></script>
+
+    </body>
+</html>

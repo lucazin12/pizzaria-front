@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item active">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-utensils"></i>&nbsp; Painel de Pedidos</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                            <div class="menus-pedido">
+                                <a href="#" class="btn btn-white btn-sm tab-content"  id="tab-pendentes" onclick="pedido.method.openTab('pendentes', 1)">
+                                    <i class="far fa-dot-circle"></i> Pendentes
+                                    <span class="badge-total-pedidos hidden" id="badge-total-pendentes"></span>
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-aceito" onclick="pedido.method.openTab('aceito', 2)">
+                                    <i class="far fa-thumbs-up"></i> Aceito
+                                    <span class="badge-total-pedidos hidden" id="badge-total-aceito"></span>
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-preparo" onclick="pedido.method.openTab('preparo', 3)">
+                                    <i class="far fa-clock"></i> Em preparo
+                                    <span class="badge-total-pedidos hidden" id="badge-total-preparo"></span>
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-entrega" onclick="pedido.method.openTab('entrega', 4)">
+                                    <i class="fas fa-motorcycle"></i> Em entrega
+                                    <span class="badge-total-pedidos hidden" id="badge-total-entrega"></span>
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-concluido" onclick="pedido.method.openTab('concluido', 5)">
+                                    <i class="far fa-check-circle"></i> Concluído
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <div class="row lista-pedidos" id="lista-pedidos">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        
+    </section>
+
+
+    <div id="modalDetalhes" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Detalhes do pedido</h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                <div class="container-dados-pedido pt-1">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="card card-address cursor-default">
+                                <div class="img-icon-details status">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="infos pr-0">
+                                    <div class="d-flex">
+                                        <p class="name mb-0"><b id="lblNomeCliente"></b></p>
+                                        <span class="text mb-0" id="lblTelefoneCliente"></span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="info-pedido" id="lblDataHora"></span>
+                                        <span class="info-pedido link" id="lblTipoEntrega"></span>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card card-address cursor-default mt-2">
+                                <div class="img-icon-details status" id="lblFormaPagamentoIcon">
+                                </div>
+                                <div class="infos">
+                                    <p class="name mb-0"><b id="lblFormaPagamentoTitulo"></b></p>
+                                    <span class="text mb-0" id="lblFormaPagamentoDescricao"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 hidden" id="container-endereco">
+                            <div class="card card-address cursor-default mt-2">
+                                <div class="img-icon-details status">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="infos">
+                                    <p class="name mb-0"><b id="lblEndereco"></b></p>
+                                    <span class="text mb-0" id="lblCep"></span>
+                                </div>
+                                <div class="icon-edit">
+                                    <i class="fas fa-location-arrow"></i>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+                <div class="container-itens-pedido carrinho">
+
+                    <div id="itensPedido">
+
+                    </div>
+
+                    <div class="footer-btn mt-3" id="container-action-footer">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/pedidos.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            pedido.event.init();
+        });
+    </script>
+
+</body> 
+</html>

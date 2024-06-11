@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item active">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-building"></i>&nbsp; Configurações da Empresa</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                            <div class="menus-config">
+                                <a href="#" class="btn btn-white btn-sm active tab-content" id="tab-sobre" onclick="empresa.method.openTab('sobre')">
+                                    <i class="fas fa-info-circle"></i> Sobre a empresa
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-endereco" onclick="empresa.method.openTab('endereco')">
+                                    <i class="fas fa-map-marked-alt"></i> Endereço físico
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-horario" onclick="empresa.method.openTab('horario')">
+                                    <i class="fas fa-clock"></i> Horário de funcionamento
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item" id="sobre">
+                        
+                            <div class="d-flex">
+                                <div class="logo-empresa">
+                                    <div class="container-img-sobre" id="img-empresa">
+                                        <a id="btn-remover-logo" onclick="empresa.method.removeLogo()" href="#" class="icon-action me-1 mb-1 hidden" data-bs-toggle="tooltip" data-bs-placement="top" title="Remover">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                        <a id="btn-editar-logo" onclick="empresa.method.openModalLogo()" href="#" class="icon-action me-1 mb-1 hidden" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="detalhes-empresa">
+
+                                    <p class="title-categoria mb-0"><b>Nome da empresa:</b></p>
+
+                                    <div class="form-group mt-2">
+                                        <input id="txtNomeEmpresa" type="text" class="form-control" />
+                                    </div>
+
+                                    <p class="title-categoria mb-0 mt-4"><b>Sobre a empresa:</b></p>
+
+                                    <div class="form-group mt-2">
+                                        <textarea id="txtSobreEmpresa" class="form-control" rows="5"></textarea>
+                                    </div>
+
+                                    <a class="btn btn-yellow btn-sm mt-5" onclick="empresa.method.salvarDadosSobre()">
+                                        <i class="fas fa-check"></i>&nbsp; Salvar Alterações
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item hidden" id="endereco">
+                        
+                            <div class="row">
+
+                                <div class="col-3">
+                                    <div class="form-group container-cep">
+                                        <p class="title-categoria mb-0"><b>CEP:</b></p>
+                                        <input id="txtCEP" type="text" class="form-control cep" />
+                                        <a class="btn btn-yellow btn-sm" onclick="empresa.method.buscarCep()">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+        
+                                <div class="col-9"></div>
+        
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>Endereço:</b></p>
+                                        <input id="txtEndereco" type="text" class="form-control" />
+                                    </div>
+                                </div>
+        
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>Bairro:</b></p>
+                                        <input id="txtBairro" type="text" class="form-control" />
+                                    </div>
+                                </div>
+        
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>Número:</b></p>
+                                        <input id="txtNumero" type="text" class="form-control" />
+                                    </div>
+                                </div>
+        
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>Cidade:</b></p>
+                                        <input id="txtCidade" type="text" class="form-control" />
+                                    </div>
+                                </div>
+        
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>Complemento:</b></p>
+                                        <input id="txtComplemento" type="text" class="form-control" />
+                                    </div>
+                                </div>
+        
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <p class="title-categoria mb-0 mt-4"><b>UF:</b></p>
+                                        <select id="ddlUf" class="form-control">
+                                            <option value="-1">...</option>
+                                            <option value="AC">AC</option>
+                                            <option value="AL">AL</option>
+                                            <option value="AP">AP</option>
+                                            <option value="AM">AM</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CE">CE</option>
+                                            <option value="DF">DF</option>
+                                            <option value="ES">ES</option>
+                                            <option value="GO">GO</option>
+                                            <option value="MA">MA</option>
+                                            <option value="MT">MT</option>
+                                            <option value="MS">MS</option>
+                                            <option value="MG">MG</option>
+                                            <option value="PA">PA</option>
+                                            <option value="PB">PB</option>
+                                            <option value="PR">PR</option>
+                                            <option value="PE">PE</option>
+                                            <option value="PI">PI</option>
+                                            <option value="RJ">RJ</option>
+                                            <option value="RN">RN</option>
+                                            <option value="RS">RS</option>
+                                            <option value="RO">RO</option>
+                                            <option value="RR">RR</option>
+                                            <option value="SC">SC</option>
+                                            <option value="SP">SP</option>
+                                            <option value="SE">SE</option>
+                                            <option value="TO">TO</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <a class="btn btn-yellow btn-sm mt-5" onclick="empresa.method.salvarDadosEndereco()">
+                                <i class="fas fa-check"></i>&nbsp; Salvar Alterações
+                            </a>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item hidden" id="horario">
+
+                            <p class="title-categoria mb-0 mb-4">
+                                <b>Configure o horário em que sua loja estará recebendo pedidos para delivery ou retirada.</b>
+                            </p>
+
+                            <div id="listaHorarios">
+
+                            </div>
+
+                            <div class="card card-select mt-5" onclick="empresa.method.adicionarHorario()">
+                                <div class="infos-produto-opcional">
+                                    <p  class="mb-0 color-primary">
+                                        <i class="fas fa-plus-circle"></i>&nbsp; Adicionar novo horário
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-yellow btn-sm mt-5" onclick="empresa.method.salvarHorarios()">
+                                <i class="fas fa-check"></i>&nbsp; Salvar Alterações
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+        
+
+    </section>
+
+    <div id="modalUpload" class="modal fade modal-cadastro" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">                
+                    <div class="row upload">
+
+                        <div id="drop-area">
+                            <form id="upload_form" class="my-form" enctype="multipart/form-data"> 
+                                <p><b>Arraste e solte a imagem aqui, ou</b></p>
+                                <input name="upload" type="file" id="fileElem" accept="image/*" onchange="empresa.method.uploadLogo(this.files)">
+                                <label class="btn btn-sm btn-yellow" for="fileElem">Carregar imagem</label>
+                            </form>
+                            <div id="gallery"></div>
+                        </div>
+
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/empresa.js"></script>
+
+</body> 
+</html>

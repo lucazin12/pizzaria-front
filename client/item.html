@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delivery - Pizzaria Maluca</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/fontawesome.css">
+        <link rel="stylesheet" href="./css/animate.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+
+    </head>
+    <body>
+
+        <div class="container-mensagens" id="container-mensagens">
+
+        </div>
+
+        <div class="loader-full animated fadeIn hidden">
+            <img src="./img/loader.png" width="100" class="animated pulse infinite" />
+        </div>
+
+        <div class="bg-top details"></div>
+
+        <header class="width-fix mt-3">
+            <div class="card">
+
+                <div class="d-flex">
+                    <a href="./index.html" class="container-voltar">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="infos text-center">
+                        <h1 class="mb-0"><b>Detalhes do produto</b></h1>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="imagem width-fix mt-4">
+            <div class="container-imagem-produto" id="img-produto"></div>
+            <div class="card mb-2">
+                <div class="d-flex">
+                    <div class="infos-produto">
+                        <p class="name mb-2"><b id="titulo-produto"></b></p>
+                        <p class="description mb-4" id="descricao-produto"></p>
+                        <p class="price"><b id="preco-produto"></b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="opcionais width-fix mt-5" id="listaOpcionais">
+
+        </section>
+
+        <section class="opcionais-simples width-fix hidden" id="containerOpcionaisSimples">
+            <p class="title-categoria mb-0"><b>Opcionais</b></p>
+            <div class="container-group mb-5" id="listaOpcionaisSimples">
+                
+            </div>
+        </section>
+
+        <section class="observacao width-fix pb-5">
+        <div class="container-group mb-5">
+                <p class="title-categoria mb-0"><b>Observações</b></p>
+                <span class="sub-title-categoria">Informe alguma observação abaixo</span>
+                <textarea class="form-control mt-2" rows="4" id="txtObservacao"></textarea>
+            </div>
+        </section>
+
+        <section class="menu-bottom details animated fadeIn delay-05s hidden" id="menu-bottom">
+            <div class="add-carrinho">
+                <span class="btn-menos"
+                    onclick="item.method.diminuirQuantidade()"><i
+                        class="fas fa-minus"></i></span>
+                <span class="add-numero-itens"
+                    id="qntd-carrinho">1</span>
+                <span class="btn-mais"
+                    onclick="item.method.aumentarQuantidade()"><i
+                        class="fas fa-plus"></i></span>
+            </div>
+            <a href="#!" class="btn btn-yellow btn-sm" onclick="item.method.adicionarAoCarrinho()">
+                Adicionar <span id="btn-preco-produto"></span>
+            </a>
+        </section>
+
+        <section class="menu-bottom animated fadeIn delay-05s disabled hidden" id="menu-bottom-closed">
+            <p class="mb-0"><b>Loja fechada no momento.</b></p>
+        </section>
+
+
+
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/item.js"></script>
+
+    </body>
+</html>

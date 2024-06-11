@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delivery - Pizzaria Maluca</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/fontawesome.css">
+        <link rel="stylesheet" href="./css/animate.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+
+    </head>
+    <body>
+
+        <div class="loader-full animated fadeIn hidden">
+            <img src="./img/loader.png" width="100" class="animated pulse infinite" />
+        </div>
+
+        <div class="bg-top pedido"></div>
+
+        <header class="width-fix mt-3">
+            <div class="card">
+
+                <div class="d-flex">
+                    <div class="infos text-center">
+                        <h1 class="mb-0"><b>Acompanhar pedido</b></h1>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="pedido width-fix mt-4 hidden" id="containerNenhumPedido">
+            <div class="card card-status-pedido">
+                <div class="img-icon-details">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="infos">
+                    <p class="name mb-1"><b>Nenhum pedido disponível</b></p>
+                    <span class="text mb-0">Faça um pedido e o status dele aparecerá aqui</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="pedido width-fix mt-4 hidden" id="containerAcompanhamento">
+            
+        </section>
+
+        <section class="menu-bottom animated fadeIn delay-05s hidden" id="menu-bottom">
+            <a href="index.html" class="menu-bottom-item">
+                <i class="fas fa-book-open"></i>&nbsp; Cardápio
+            </a>
+            <a href="pedido.html" class="menu-bottom-item active">
+                <i class="fas fa-utensils"></i>&nbsp; Pedido
+            </a>
+            <a href="carrinho.html" class="menu-bottom-item">
+                <span id="icone-carrinho-vazio" class="hidden"><i class="fas fa-shopping-cart"></i></span>
+                <span id="total-carrinho" class="badge-total-carrinho hidden"></span> 
+                &nbsp;Carrinho 
+            </a>
+        </section>
+    
+        <section class="menu-bottom animated fadeIn delay-05s disabled hidden" id="menu-bottom-closed">
+            <p class="mb-0"><b>Loja fechada no momento.</b></p>
+        </section>
+
+        <div id="modalDetalhes" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><b>Detalhes do pedido</b></h5>
+                  <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close" onclick="pedido.method.fecharModalDetalhesPedido()">
+                    <i class="fas fa-times"></i>&nbsp; Fechar
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                    <div class="container-dados-pedido pt-1">
+                        <div class="row">
+    
+                            <div class="col-12">
+                                <div class="card card-address cursor-default">
+                                    <div class="img-icon-details status">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="infos pr-0">
+                                        <div class="d-flex">
+                                            <p class="name mb-0 me-2"><b id="lblNomeCliente"></b></p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="info-pedido" id="lblTelefoneCliente">
+                                            </span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-12">
+                                <div class="card card-address cursor-default mt-2">
+                                    <div class="img-icon-details status" id="lblFormaPagamentoIcon">
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-0"><b id="lblFormaPagamentoTitulo"></b></p>
+                                        <span class="text mb-0" id="lblFormaPagamentoDescricao"></span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+    
+                    <div class="container-itens-pedido carrinho">
+    
+                        <div id="itensPedido">
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="./js/app.js"></script>
+        <script type="text/javascript" src="./js/pedido.js"></script>
+
+    </body>
+</html>

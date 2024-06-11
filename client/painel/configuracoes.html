@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item active">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-cog"></i>&nbsp; Configurações do Delivery</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                            <div class="menus-config">
+                                <a href="#" class="btn btn-white btn-sm active tab-content" id="tab-delivery-retirada" onclick="config.method.openTab('delivery-retirada')">
+                                    <i class="fas fa-shopping-bag"></i> Delivery e retirada
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-taxa-entrega" onclick="config.method.openTab('taxa-entrega')">
+                                    <i class="fas fa-motorcycle"></i> Taxa de entrega
+                                </a>
+                                <a href="#" class="btn btn-white btn-sm tab-content" id="tab-forma-pagamento" onclick="config.method.openTab('forma-pagamento')">
+                                    <i class="fas fa-coins"></i> Formas de pagamento
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item" id="delivery-retirada">
+
+                            <p class="title-categoria mb-0"><b>Selecione as opções de entrega da sua loja</b></p>
+                        
+                            <div class="container-group mb-3">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-box"></i>
+                                    </div>
+                                    <div class="infos config">
+                                        <p class="name mb-1"><b>Retirada</b></p>
+                                        <label class="switch">
+                                            <input type="checkbox" id="chkOpcaoRetirada" onchange="config.method.changeOpcaoRetirada()">
+                                            <span class="slider round"></span>
+                                            <span class="text mb-0" id="lblSwitchRetirada">Desligado</span>
+                                        </label>
+                                    </div>
+                                    <div class="tempo disabled" id="containerTempoRetirada">
+                                        <div class="form-group">
+                                            <label for="txtTempoMinimoRetirada"><b>Tempo mínimo retirada (min)</b></label>
+                                            <input id="txtTempoMinimoRetirada" type="number" class="form-control" placeholder="00" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtTempoMaximoRetirada"><b>Tempo máximo retirada (min)</b></label>
+                                            <input id="txtTempoMaximoRetirada" type="number" class="form-control" placeholder="00" disabled/>
+                                        </div>
+                                    </div>
+                                    <a href="#!" class="btn btn-yellow btn-sm ms-4 disabled" id="btnSalvarOpcaoRetirada" onclick="config.method.salvarOpcaoRetirada()">
+                                        <i class="fas fa-check"></i>&nbsp; Salvar
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="container-group">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-motorcycle"></i>
+                                    </div>
+                                    <div class="infos config">
+                                        <p class="name mb-1"><b>Delivery</b></p>
+                                        <label class="switch">
+                                            <input type="checkbox" id="chkOpcaoDelivery" onchange="config.method.changeOpcaoDelivery()">
+                                            <span class="slider round"></span>
+                                            <span class="text mb-0" id="lblSwitchDelivery">Desligado</span>
+                                        </label>
+                                    </div>
+                                    <div class="tempo disabled" id="containerTempoDelivery">
+                                        <div class="form-group">
+                                            <label for="txtTempoMinimoDelivery"><b>Tempo mínimo delivery (min)</b></label>
+                                            <input id="txtTempoMinimoDelivery" type="number" class="form-control" placeholder="00" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtTempoMaximoDelivery"><b>Tempo máximo delivery (min)</b></label>
+                                            <input id="txtTempoMaximoDelivery" type="number" class="form-control" placeholder="00" disabled/>
+                                        </div>
+                                    </div>
+                                    <a href="#!" class="btn btn-yellow btn-sm ms-4 disabled" id="btnSalvarOpcaoDelivery" onclick="config.method.salvarOpcaoDelivery()">
+                                        <i class="fas fa-check"></i>&nbsp; Salvar
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item hidden" id="taxa-entrega">
+
+                            <p class="title-categoria mb-0"><b>Selecione as opções de taxas de entrega</b></p>
+
+                            <div class="container-group inline mb-3">
+                                <div class="card mt-3">
+                                    <div class="group-select">
+                                        <div class="checks">
+                                            <label class="container-check">
+                                                <input type="checkbox" id="chkSemTaxa" onchange="config.method.openTabTaxa('container-sem-taxa', 'chkSemTaxa')">
+                                                <span class="checkmark"></span>
+                                                Sem taxa
+                                            </label> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="group-select">
+                                        <div class="checks">
+                                            <label class="container-check">
+                                                <input type="checkbox" id="chkTaxaUnica" onchange="config.method.openTabTaxa('container-taxa-unica', 'chkTaxaUnica')">
+                                                <span class="checkmark"></span>
+                                                Taxa única
+                                            </label> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="group-select">
+                                        <div class="checks">
+                                            <label class="container-check">
+                                                <input type="checkbox" id="chkTaxaDistancia" onchange="config.method.openTabTaxa('container-taxa-distancia', 'chkTaxaDistancia')">
+                                                <span class="checkmark"></span>
+                                                Taxa por distância
+                                            </label> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-group mb-3 hidden tab-item-taxa" id="container-sem-taxa">
+                                <div class="card card-address mt-4">
+                                    <div class="infos">
+                                        <p class="name mb-0"><b>Nenhuma taxa será cobrada na entrega.</b></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="container-group mb-3 hidden tab-item-taxa" id="container-taxa-unica">
+                                <div class="card card-address cursor-default mt-4 pb-4 ps-4 justify-content-start">
+                                    <div class="tempo">
+                                        <div class="form-group form-sm">
+                                            <label for="txtTaxaUnicaValor"><b>Taxa (R$) *</b></label>
+                                            <input id="txtTaxaUnicaValor" type="text" class="form-control money" placeholder="20,00"/>
+                                        </div>
+                                        <div class="form-group me-3">
+                                            <label for="txtTaxaUnicaTempoMinimoEntrega"><b>Tempo mínimo entrega (min)</b></label>
+                                            <input id="txtTaxaUnicaTempoMinimoEntrega" type="number" class="form-control" placeholder="30"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtTaxaUnicaTempoMaximoEntrega"><b>Tempo máximo entrega (min)</b></label>
+                                            <input id="txtTaxaUnicaTempoMaximoEntrega" type="number" class="form-control" placeholder="60"/>
+                                        </div>
+                                    </div>
+                                    <a href="#!" class="btn btn-yellow btn-sm ms-4" onclick="config.method.salvarTaxaUnica()">
+                                        <i class="fas fa-check"></i>&nbsp; Salvar Alterações
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="container-group mb-3 hidden tab-item-taxa" id="container-taxa-distancia">
+                                <div class="card card-address cursor-default mt-4 pb-4 ps-4 justify-content-start">
+                                    <div class="tempo">
+                                        <div class="form-group form-sm">
+                                            <label for="txtTaxaDistanciaKm"><b>Distância (km) *</b></label>
+                                            <input id="txtTaxaDistanciaKm" type="number" class="form-control" placeholder="5"/>
+                                        </div>
+                                        <div class="form-group form-sm">
+                                            <label for="txtTaxaDistanciaValor"><b>Taxa (R$) *</b></label>
+                                            <input id="txtTaxaDistanciaValor" type="text" class="form-control money" placeholder="20,00"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtTaxaDistanciaTempoMinimoEntrega"><b>Tempo mínimo entrega (min)</b></label>
+                                            <input id="txtTaxaDistanciaTempoMinimoEntrega" type="number" class="form-control" placeholder="30"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtTaxaDistanciaTempoMaximoEntrega"><b>Tempo máximo entrega (min)</b></label>
+                                            <input id="txtTaxaDistanciaTempoMaximoEntrega" type="number" class="form-control" placeholder="60"/>
+                                        </div>
+                                    </div>
+                                    <a href="#!" class="btn btn-yellow btn-sm ms-4" onclick="config.method.adicionarTaxaDistancia()">
+                                        <i class="fas fa-plus"></i>&nbsp; Adicionar
+                                    </a>
+                                </div>
+
+                                <p class="title-categoria mb-0 mt-5"><b>Lista das taxas cadastradas:</b></p>
+
+                                <div class="card mt-3">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Distância (km)</b></th>
+                                                <th><b>Taxa (R$)</b></th>
+                                                <th><b>Tempo de entrega (min)</b></th>
+                                                <th><b>Status</b></th>
+                                                <th><b>Ações</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaTaxasDistancia"></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-5 tab-item hidden" id="forma-pagamento">
+
+                            <p class="title-categoria mb-0"><b>Selecione as formas de <b class="color-primary">pagamento na entrega</b></b></p>
+
+                            <div class="container-group mb-3">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-1"><b>Pix</b></p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="chkFormaPagamento-pix" onchange="config.method.changeOpcaoFormaPagamento('1', 'pix')">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="container-group mb-3">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-1"><b>Dinheiro</b></p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="chkFormaPagamento-dinheiro" onchange="config.method.changeOpcaoFormaPagamento('2', 'dinheiro')">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="container-group mb-3">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-1"><b>Cartão de Crédito</b></p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="chkFormaPagamento-cartaocredito" onchange="config.method.changeOpcaoFormaPagamento('3', 'cartaocredito')">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="container-group mb-3">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-1"><b>Cartão de Débito</b></p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="chkFormaPagamento-cartaodebito" onchange="config.method.changeOpcaoFormaPagamento('4', 'cartaodebito')">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <p class="title-categoria mb-0 mt-5"><b>Formas de <b class="color-primary">pagamento via aplicativo</b></b></p>
+
+                            <div class="container-group mb-3 opacity-05">
+                                <div class="card card-address cursor-default mt-3">
+                                    <div class="img-icon-details">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="infos">
+                                        <p class="name mb-1"><b>Em construção...</b></p>
+                                        <span class="text mb-0">Esta função será liberada em breve.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+        
+
+    </section>
+
+
+    <!-- Modal de confirmação para Remover a Taxa por Distancia -->
+    <div id="modalRemoverTaxaDistancia" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fas fa-trash-alt"></i>&nbsp; <b>Remover Taxa</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>remover</b> a taxa por distância selecionada?</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-red btn-sm me-3" onclick="config.method.removerTaxaDistancia()">
+                        <i class="fas fa-trash-alt"></i>&nbsp; Remover Taxa
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/configuracoes.js"></script>
+
+</body> 
+</html>

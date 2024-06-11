@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./css/painel.css" />
+
+</head>
+<body>
+
+    <div class="container-mensagens" id="container-mensagens">
+
+    </div>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="../img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <section class="bg-menu">
+
+        <div class="menu-left">
+
+            <div class="logo">
+                <img class="logo-empresa" width="100">
+            </div>
+
+            <div class="menus">
+                <a href="./home.html" class="menu-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="./pedidos.html" class="menu-item">
+                    <i class="fas fa-utensils"></i> Pedidos
+                </a>
+                <a href="./cardapio.html" class="menu-item active">
+                    <i class="fas fa-book-open"></i> Cardápio
+                </a>
+                <a href="./configuracoes.html" class="menu-item">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+                <a href="./empresa.html" class="menu-item">
+                    <i class="fas fa-building"></i> Empresa
+                </a>
+                <a href="./relatorio.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Relatório
+                </a>
+            </div>
+
+           
+        </div>
+
+        <div class="conteudo">
+            
+            <section class="menu-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center mt-4">
+                            
+                            <h1 class="title-page"><b><i class="fas fa-book-open"></i>&nbsp; Edição do Cardápio</b></h1>
+
+                            <div class="container-right">
+                                <div class="container-dados">
+                                    <p class="nome-empresa"></p>
+                                    <span class="email-empresa"></span>
+                                </div>
+
+                                <a href="#" class="btn btn-white btn-sm" onclick="app.method.logout()">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sair
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12" id="categorias">
+                            
+                            <div class="container-group mb-5">
+                                <p class="title-categoria mb-0"><b>Categorias do Cardápio</b></p>
+
+                                <div class="accordion" id="categoriasMenu">
+
+                                </div>
+
+                                <div class="card card-select mt-3" onclick="cardapio.method.abrirModalAdicionarCategoria()">
+                                    <div class="infos-produto-opcional">
+                                        <p class="mb-0 color-primary"><i class="fas fa-plus-circle"></i>&nbsp; Adicionar nova categoria</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </section>   
+
+
+    <!-- Modal Cadastro / Edição da Categoria -->
+    <div id="modalCategoria" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><b>Categoria</b></h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-3">
+                        <div class="form-group">
+                            <p class="title-categoria mb-0 mt-4"><b>Ícone:</b></p>
+                            <select id="ddlIconeCategoria" class="form-control fa-select">
+                                <option value="-1">...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            <p class="title-categoria mb-0 mt-4"><b>Nome da categoria:</b></p>
+                            <input id="txtNomeCategoria" type="text" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-yellow btn-sm" onclick="cardapio.method.salvarCategoria()">
+                        <i class="fas fa-check"></i>&nbsp; Salvar Categoria
+                    </a>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Duplicar Categoria -->
+    <div id="modalDuplicarCategoria" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="far fa-copy"></i>&nbsp; <b>Duplicar Categoria</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>duplicar</b> a categoria selecionada? <br><br>
+                        <b>Obs:</b> Todos os produtos desta categoria também serão duplicados.</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-yellow btn-sm me-3" onclick="cardapio.method.duplicarCategoria()">
+                        <i class="far fa-copy"></i>&nbsp; Duplicar Categoria
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Remover Categoria -->
+    <div id="modalRemoverCategoria" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fas fa-trash-alt"></i>&nbsp; <b>Remover Categoria</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>remover</b> a categoria selecionada? <br><br>
+                        <b class="color-red">ATENÇÃO:</b> Todos os produtos desta categoria também serão removidos.</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-red btn-sm me-3" onclick="cardapio.method.removerCategoria()">
+                        <i class="fas fa-trash-alt"></i>&nbsp; Remover Categoria
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Cadastro / Edição do Produto -->
+    <div id="modalProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><b>Produto</b></h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <p class="title-categoria mb-0 mt-4"><b>Nome do produto:</b></p>
+                            <input id="txtNomeProduto" type="text" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <p class="title-categoria mb-0 mt-4"><b>Preço (R$):</b></p>
+                            <input id="txtPrecoProduto" type="text" class="form-control money" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <p class="title-categoria mb-0 mt-4"><b>Descrição:</b></p>
+                            <textarea id="txtDescricaoProduto" class="form-control" style="height: 190px;"></textarea>
+                        </div>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-yellow btn-sm" onclick="cardapio.method.salvarProduto()">
+                        <i class="fas fa-check"></i>&nbsp; Salvar Produto
+                    </a>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Duplicar Produto -->
+    <div id="modalDuplicarProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="far fa-copy"></i>&nbsp; <b>Duplicar Produto</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>duplicar</b> o produto selecionado?</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-yellow btn-sm me-3" onclick="cardapio.method.duplicarProduto()">
+                        <i class="far fa-copy"></i>&nbsp; Duplicar Produto
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Remover Produto -->
+    <div id="modalRemoverProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fas fa-trash-alt"></i>&nbsp; <b>Remover Produto</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>remover</b> o produto selecionado?</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-red btn-sm me-3" onclick="cardapio.method.removerProduto()">
+                        <i class="fas fa-trash-alt"></i>&nbsp; Remover Produto
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar Imagem do Produto -->
+    <div id="modalUpload" class="modal fade modal-cadastro" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">                
+                    <div class="row upload">
+
+                        <div id="drop-area">
+                            <form id="upload_form" class="my-form" enctype="multipart/form-data"> 
+                                <p><b>Arraste e solte a imagem aqui, ou</b></p>
+                                <input name="upload" type="file" id="fileElem" accept="image/*" onchange="cardapio.method.uploadImagemProduto(this.files)">
+                                <label class="btn btn-sm btn-yellow" for="fileElem">Carregar imagem</label>
+                            </form>
+                        </div>
+
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Remover Imagem do Produto -->
+    <div id="modalRemoverImagemProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fas fa-trash-alt"></i>&nbsp; <b>Remover Imagem</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>remover</b> a imagem do produto selecionado?</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-red btn-sm me-3" onclick="cardapio.method.removerImagemProduto()">
+                        <i class="fas fa-trash-alt"></i>&nbsp; Remover Imagem
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de Adicionais do Produto -->
+    <div id="modalOpcionaisProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><b>Opcionais do Produto</b></h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+
+                    <div class="col-12 mb-5">
+
+                        <div class="card card-select" onclick="cardapio.method.abrirModalAddOpcional()">
+                            <div class="infos-produto-opcional">
+                                <p class="mb-0 color-primary"><i class="fas fa-plus-circle"></i>&nbsp; Adicionar opcional</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 opcionais" id="listaOpcionaisProduto">
+
+                                        
+                    </div>
+                   
+                </div>    
+                
+                <div class="footer-btn mt-3">
+                    <!-- <a href="#!" class="btn btn-yellow btn-sm" onclick="cardapio.method.salvarProduto()">
+                        <i class="fas fa-check"></i>&nbsp; Salvar Produto
+                    </a> -->
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de Adicionar/Editar Opcionais do Produto -->
+    <div id="modalAddOpcionalProduto" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><b>Adicionar / Editar Opcional</b></h5>
+              <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close" onclick="cardapio.method.fecharModalAddOpcionalProduto()">
+                <i class="fas fa-times"></i>&nbsp; Fechar
+              </button>
+            </div>
+            <div class="modal-body">
+                  
+                <div class="row mb-5">
+
+                    <div class="col-12">
+
+                        <p class="title-categoria mb-0"><b>Selecione o tipo de opcional:</b></p>
+
+                        <div class="container-group inline mb-3">
+                            <div class="card mt-3">
+                                <div class="group-select">
+                                    <div class="checks">
+                                        <label class="container-check">
+                                            <input id="chkOpcionalSimples" type="checkbox" checked="true" class="tipoOpcional" onchange="cardapio.method.changeTipoOpcional('chkOpcionalSimples')">
+                                            <span class="checkmark"></span>
+                                            Opcional simples
+                                        </label> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-3">
+                                <div class="group-select">
+                                    <div class="checks">
+                                        <label class="container-check">
+                                            <input id="chkSelecaoOpcoes" type="checkbox" class="tipoOpcional" onchange="cardapio.method.changeTipoOpcional('chkSelecaoOpcoes')">
+                                            <span class="checkmark"></span>
+                                            Seleção de opções
+                                        </label> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 container-opcionais hidden" id="container-chkOpcionalSimples">
+
+                        <div class="row mt-4">
+
+                            <div class="col-9">
+                                <div class="form-group">
+                                    <p class="title-categoria mb-0"><b>Nome:</b></p>
+                                    <input id="txtNomeSimples" type="text" class="form-control" placeholder="Ex: Bacon" />
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <p class="title-categoria mb-0"><b>Preço (R$):</b></p>
+                                    <input id="txtPrecoSimples" type="text" class="form-control money" placeholder="0,00" />
+                                </div>
+                            </div>
+
+                        </div>                        
+
+                    </div>
+
+                    <div class="col-12 container-opcionais hidden" id="container-chkSelecaoOpcoes">
+
+                        <div class="row mt-4">
+
+                            <div class="col-12">
+                                <div class="form-group mb-4">
+                                    <p class="title-categoria mb-0"><b>Título da seção:</b></p>
+                                    <input id="txtTituloSecao" type="text" class="form-control" placeholder="Ex: Deseja borda recheada?" value="Deseja borda recheada?" onkeyup="cardapio.method.changeTituloSecaoOpcao()" />
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <p class="title-categoria mb-0"><b>Mínimo:</b></p>
+                                    <input id="txtMinimoOpcao" type="number" min="0" class="form-control" placeholder="0" value="0" onchange="cardapio.method.changeMinimoMaximoOpcao()" />
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <p class="title-categoria mb-0"><b>Máximo:</b></p>
+                                    <input id="txtMaximoOpcao" type="number" min="1" class="form-control" placeholder="0" value="1" onchange="cardapio.method.changeMinimoMaximoOpcao()" />
+                                </div>
+                            </div>
+
+                            <div class="col-1">
+
+                            </div>
+
+                            <div class="col-6 flex-hint">
+                               
+                                <p class="title-categoria mb-0">
+                                    <b id="title-opcao-hint">Deseja borda recheada?</b>
+                                    <span class="badge badge-primary rascunho">Rascunho</span>
+                                </p>
+                                <span class="sub-title-categoria" id="text-opcao-hint">Escolha até 1 opção</span>
+                            </div>
+
+                            <div class="col-1">
+
+                            </div>
+
+                            <div class="col-12">
+                                <p class="title-categoria mb-4 mt-5"><b>Informe as opções:</b></p>
+                            </div>                            
+
+                            <div class="col-12" id="listaOpcoesSelecao">
+
+                                <div class="row linha mt-4" id="opcao-123">
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <p class="title-categoria mb-0"><b>Nome:</b></p>
+                                            <input id="txtNomeSimples" type="text" class="form-control" placeholder="Ex: Bacon" />
+                                        </div>
+                                    </div>
+        
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <p class="title-categoria mb-0"><b>Preço (R$):</b></p>
+                                            <input id="txtPrecoSimples" type="text" class="form-control money" placeholder="0,00" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1">
+                                        <a href="#!" class="btn btn-red btn-sm mt-4" onclick="cardapio.method.removerLinhaOpcao('123')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card card-select mt-4" onclick="cardapio.method.adicionarLinhaOpcao()">
+                                    <div class="infos-produto-opcional">
+                                        <p class="mb-0 color-primary"><i class="fas fa-plus-circle"></i>&nbsp; Nova opção</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>    
+
+                    </div>
+
+                </div>
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-yellow btn-sm" onclick="cardapio.method.salvarOpcional()">
+                        <i class="fas fa-check"></i>&nbsp; Salvar Opcional
+                    </a>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação para Remover Opcional -->
+    <div id="modalRemoverOpcionalItem" class="modal fade modal-form" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><i class="fas fa-trash-alt"></i>&nbsp; <b>Remover Opcional</b></h5>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row mb-5">
+
+                    <div class="col-12">
+                        <p>Deseja realmente <b>remover</b> o opcional selecionado?</p>
+                    </div>
+
+                </div>                
+
+                <div class="footer-btn mt-3">
+                    <a href="#!" class="btn btn-red btn-sm me-3" onclick="cardapio.method.removerOpcionalItem()">
+                        <i class="fas fa-trash-alt"></i>&nbsp; Remover Opcional
+                    </a>
+                    <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>&nbsp; Cancelar
+                    </button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="./js/icones-categoria.js"></script>
+    <script type="text/javascript" src="./js/cardapio.js"></script>
+
+</body> 
+</html>

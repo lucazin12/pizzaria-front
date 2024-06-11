@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery - Pizzaria Maluca</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/fontawesome.css">
+    <link rel="stylesheet" href="./css/animate.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+
+</head>
+<body>
+
+    <div class="loader-full animated fadeIn hidden">
+        <img src="./img/loader.png" width="100" class="animated pulse infinite" />
+    </div>
+
+    <div class="bg-top"></div>
+
+    <header class="width-fix mt-5 animated fadeInUp">
+        <div class="card">
+
+            <div class="d-flex">
+                <div class="container-img" id="imgLogoEmpresa"></div>
+                <div class="infos">
+                    <h1><b id="lblNomeEmpresa"></b></h1>
+                    <div class="infos-sub">
+                        <p class="status-open hidden"><i class="fa fa-clock"></i> <span id="lblLojaAberta"></span></p>
+                        <a href="./sobre.html" class="link">ver mais</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="categoria width-fix mt-4 animated fadeInUp">
+        <div class="container-menu" id="listaCategorias">
+            
+        </div>
+    </section>
+
+    <section class="lista width-fix mt-0 pb-5" id="listaItensCardapio">
+
+    </section>
+
+    <section class="menu-bottom animated fadeIn delay-05s hidden" id="menu-bottom">
+        <a href="index.html" class="menu-bottom-item active">
+            <i class="fas fa-book-open"></i>&nbsp; Cardápio
+        </a>
+        <a href="pedido.html" class="menu-bottom-item">
+            <i class="fas fa-utensils"></i>&nbsp; Pedido
+        </a>
+        <a href="carrinho.html" class="menu-bottom-item">
+            <span id="icone-carrinho-vazio" class="hidden"><i class="fas fa-shopping-cart"></i></span>
+            <span id="total-carrinho" class="badge-total-carrinho hidden"></span> 
+            &nbsp;Carrinho 
+        </a>
+    </section>
+
+    <section class="menu-bottom animated fadeIn delay-05s disabled hidden" id="menu-bottom-closed">
+        <p class="mb-0"><b>Loja fechada no momento.</b></p>
+    </section>
+
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/popper.min.js"></script> -->
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/cardapio.js"></script>
+
+</body> 
+</html>
